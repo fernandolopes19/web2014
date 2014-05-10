@@ -1,17 +1,131 @@
 <!DOCTYPE html>
+
 <html>
     <head>
-        <title>Assinatura Digital</title>
+        <title>Assinatura Digital via Javascript</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
+
         <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/core.js"></script>
         <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/sha1.js"></script>
-        <script src="js/libs/crypto-1.1.js"></script>
-        <script src="js/script-assinatura-digital.js"></script>
-    </head>
 
+        <script src="http://yui.yahooapis.com/2.9.0/build/yahoo/yahoo-min.js"></script>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/md5.js"></script>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/sha256.js"></script>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/ripemd160.js"></script>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/x64-core.js"></script>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/sha512.js"></script>
+
+        <script type="text/javascript" src="js/libs/jsbn.js"></script>
+        <script type="text/javascript" src="js/libs/jsbn2.js"></script>
+        <script type="text/javascript" src="js/libs/rsa.js"></script>
+        <script type="text/javascript" src="js/libs/rsa2.js"></script>
+        <script type="text/javascript" src="js/libs/base64.js"></script>
+
+        <script type="text/javascript" src="js/libs/rsapem-1.1.js"></script>
+        <script type="text/javascript" src="js/libs/rsasign-1.2.js"></script>
+        <script type="text/javascript" src="js/libs/asn1hex-1.1.js"></script>
+        <script type="text/javascript" src="js/libs/x509-1.1.js"></script>
+        <script type="text/javascript" src="js/libs/crypto-1.1.js"></script>
+        
+        <script type="text/javascript" src="js/script-assinatura-digital.js"></script>
+        
+        <style type="text/css">
+            TD  {vertical-align: top}
+        </style>
+    </head>
     <body>
-        <button type="button" onclick="hash()">Gerar Hash!</button>
-        <span id="area"></span>
-    </body>
+        <h1>Aplicação de Assinatura Digital RSA via Javascript</h1>
+
+        <form name="formulario">
+            <table border="0">
+                <tr><th>Assinante</th><th></th><th>Verificador</th></tr>
+
+                <tr>
+                    <td>
+                        RSA Chava Privada.pem<br/>
+                        <textarea name="chavePrivada" rows="10" cols="65">
+-----BEGIN RSA PRIVATE KEY-----
+MIICWwIBAAKBgQDRhGF7X4A0ZVlEg594WmODVVUIiiPQs04aLmvfg8SborHss5gQ
+Xu0aIdUT6nb5rTh5hD2yfpF2WIW6M8z0WxRhwicgXwi80H1aLPf6lEPPLvN29EhQ
+NjBpkFkAJUbS8uuhJEeKw0cE49g80eBBF4BCqSL6PFQbP9/rByxdxEoAIQIDAQAB
+AoGAA9/q3Zk6ib2GFRpKDLO/O2KMnAfR+b4XJ6zMGeoZ7Lbpi3MW0Nawk9ckVaX0
+ZVGqxbSIX5Cvp/yjHHpww+QbUFrw/gCjLiiYjM9E8C3uAF5AKJ0r4GBPl4u8K4bp
+bXeSxSB60/wPQFiQAJVcA5xhZVzqNuF3EjuKdHsw+dk+dPECQQDubX/lVGFgD/xY
+uchz56Yc7VHX+58BUkNSewSzwJRbcueqknXRWwj97SXqpnYfKqZq78dnEF10SWsr
+/NMKi+7XAkEA4PVqDv/OZAbWr4syXZNv/Mpl4r5suzYMMUD9U8B2JIRnrhmGZPzL
+x23N9J4hEJ+Xh8tSKVc80jOkrvGlSv+BxwJAaTOtjA3YTV+gU7Hdza53sCnSw/8F
+YLrgc6NOJtYhX9xqdevbyn1lkU0zPr8mPYg/F84m6MXixm2iuSz8HZoyzwJARi2p
+aYZ5/5B2lwroqnKdZBJMGKFpUDn7Mb5hiSgocxnvMkv6NjT66Xsi3iYakJII9q8C
+Ma1qZvT/cigmdbAh7wJAQNXyoizuGEltiSaBXx4H29EdXNYWDJ9SS5f070BRbAIl
+dqRh3rcNvpY6BKJqFapda1DjdcncZECMizT/GMrc1w==
+-----END RSA PRIVATE KEY-----
+                        </textarea><br/>
+                        Mensagem a ser assinada<br/>
+                        <input type="text" name="campo_mensagem" size="100" value="aaa"/><br/>
+                    </td>
+                    <td></td>
+                    <td>
+                        Resultado da verificação da Assinatura Digital
+                        <div id="campo_resultado" style="background: yellow">Preencha os campos para realizar a verificação da Assinatura Digital</div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <select name="hash_algoritmo">
+                            <option value="sha1" selected>SHA1
+                            <option value="sha256">SHA256
+                            <option value="sha512">SHA512
+                            <option value="md5">MD5
+                            <option value="ripemd160">RIPEMD-160
+                        </select>
+                        <input type="button" value="Assinar essa mensagem &darr;" onClick="doSign();"/><br/>
+                    </td>
+                    <td>
+                        <input type="button" value="Copy &rarr;" onClick="copyMsgAndSig();"/><br/>
+                    </td>
+                    <td>
+                        <input type="button" value="Verify this signature &uarr;" onClick="doVerify();"/><br/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Geração da Assinatura Digital<br/>
+                        <textarea name="campo_assinatura_digital" rows="4" cols="65">
+                            Assinatura Digital será gerada aqui
+                        </textarea>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        Verificação da Assinatura Digital<br/>
+                        <textarea name="campo_verificacao_assinatura_digital" rows="4" cols="65">
+------&gt; Coloque aqui a Assinatura Digital &lt;------
+                        </textarea><br/>
+                        Mensagem a ser verificada a Assinatura Digital<br/>
+                        <input type="text" name="campo_mensagem_verificada" size="100" value="aaa"/><br/>
+                        Chave Pública do Assinante<br/>
+                        <textarea name="cert" rows="10" cols="65">
+-----BEGIN CERTIFICATE-----
+MIIBvTCCASYCCQD55fNzc0WF7TANBgkqhkiG9w0BAQUFADAjMQswCQYDVQQGEwJK
+UDEUMBIGA1UEChMLMDAtVEVTVC1SU0EwHhcNMTAwNTI4MDIwODUxWhcNMjAwNTI1
+MDIwODUxWjAjMQswCQYDVQQGEwJKUDEUMBIGA1UEChMLMDAtVEVTVC1SU0EwgZ8w
+DQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANGEYXtfgDRlWUSDn3haY4NVVQiKI9Cz
+Thoua9+DxJuiseyzmBBe7Roh1RPqdvmtOHmEPbJ+kXZYhbozzPRbFGHCJyBfCLzQ
+fVos9/qUQ88u83b0SFA2MGmQWQAlRtLy66EkR4rDRwTj2DzR4EEXgEKpIvo8VBs/
+3+sHLF3ESgAhAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAEZ6mXFFq3AzfaqWHmCy1
+ARjlauYAa8ZmUFnLm0emg9dkVBJ63aEqARhtok6bDQDzSJxiLpCEF6G4b/Nv/M/M
+LyhP+OoOTmETMegAVQMq71choVJyOFE5BtQa6M/lCHEOya5QUfoRF2HF9EjRF44K
+3OK+u3ivTSj3zwjtpudY5Xo=
+-----END CERTIFICATE-----
+                        </textarea><br/>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
+</body>
 </html>
