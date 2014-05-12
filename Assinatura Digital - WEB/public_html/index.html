@@ -52,7 +52,7 @@
                         <input type="file" onchange='readText(this, "chavePrivada")' />
                         <textarea id="chavePrivada" name="chavePrivada" rows="10" cols="65">
 =================================================================
------------&gt; Escolha o arquivo contendo a Chave Privada &lt;----------
+----------&gt; Escolha o arquivo contendo a Chave Privada &lt;---------
 =================================================================
                         </textarea><br/>
                         Mensagem a ser assinada<br/>
@@ -64,7 +64,7 @@
                         <input type="file" onchange='readText(this, "chavePublica")' />
                         <textarea id="chavePublica" name="cert" rows="10" cols="65">
 =================================================================
------------&gt; Escolha o arquivo contendo a Chave Pública &lt;----------
+----------&gt; Escolha o arquivo contendo a Chave Pública &lt;---------
 =================================================================
                         </textarea><br/>
                         Mensagem a ser verificada a Assinatura Digital<br/>
@@ -107,7 +107,7 @@
 =================================================================
                         </textarea><br/>
 
-                        <input type="button" value="Verify this signature" onClick="doVerify();"/><br/>
+                        <input type="button" value="Verificar Assinatura" onClick="doVerify();"/><br/>
 
                         Resultado da verificação da Assinatura Digital
                         <div id="campo_resultado" class="tarja_amarela">Preencha os campos para realizar a verificação da Assinatura Digital</div>
