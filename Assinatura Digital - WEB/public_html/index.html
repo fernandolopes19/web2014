@@ -39,7 +39,7 @@
             TD  {vertical-align: top}
         </style>
     </head>
-    <body onload="checkFileAPI();">
+    <body onload="verificarFileAPI();">
         <h1>Aplicação de Assinatura Digital RSA via Javascript</h1>
 
         <form name="formulario">
@@ -49,7 +49,7 @@
                 <tr>
                     <td>
                         RSA Chava Privada.pem<br/>
-                        <input type="file" onchange='readText(this, "chavePrivada")' />
+                        <input type="file" onchange='lerArquivoChave(this, "chavePrivada")' />
                         <textarea id="chavePrivada" name="chavePrivada" rows="10" cols="65">
 =================================================================
 ----------&gt; Escolha o arquivo contendo a Chave Privada &lt;---------
@@ -61,7 +61,7 @@
                     <td></td>
                     <td>
                         Chave Pública do Assinante<br/>
-                        <input type="file" onchange='readText(this, "chavePublica")' />
+                        <input type="file" onchange='lerArquivoChave(this, "chavePublica")' />
                         <textarea id="chavePublica" name="cert" rows="10" cols="65">
 =================================================================
 ----------&gt; Escolha o arquivo contendo a Chave Pública &lt;---------
@@ -81,10 +81,10 @@
                             <option value="md5">MD5
                             <option value="ripemd160">RIPEMD-160
                         </select>
-                        <input type="button" value="Assinar essa mensagem" onClick="doSign();"/><br/>
+                        <input type="button" value="Assinar essa mensagem" onClick="fazerAssinatura();"/><br/>
                     </td>
                     <td>
-                        <input type="button" value="Copiar campos" onClick="copyMsgAndSig();"/><br/>
+                        <input type="button" value="Copiar campos" onClick="copiarCampos();"/><br/>
                     </td>
                 </tr>
 
@@ -107,7 +107,7 @@
 =================================================================
                         </textarea><br/>
 
-                        <input type="button" value="Verificar Assinatura" onClick="doVerify();"/><br/>
+                        <input type="button" value="Verificar Assinatura" onClick="verificarAssinatura();"/><br/>
 
                         Resultado da verificação da Assinatura Digital
                         <div id="campo_resultado" class="tarja_amarela">Preencha os campos para realizar a verificação da Assinatura Digital</div>

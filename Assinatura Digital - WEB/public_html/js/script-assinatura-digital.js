@@ -4,7 +4,7 @@ var g_READER;
  * Verifica se suporta File API
  * @returns {Boolean}
  */
-function checkFileAPI() {
+function verificarFileAPI() {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
         g_READER = new FileReader();
         return true;
@@ -19,7 +19,7 @@ function checkFileAPI() {
  * @param {type} filePath
  * @returns {Boolean}
  */
-function readText(filePath, idArea) {
+function lerArquivoChave(filePath, idArea) {
     var txtChave = "";
     if (filePath.files && filePath.files[0]) {
         g_READER.onload = function(e) {
@@ -64,7 +64,7 @@ function displayContents(txtChave, idArea) {
  * Assina a mensagem (string)
  * @returns {undefined}
  */
-function doSign() {
+function fazerAssinatura() {
     var rsa = new RSAKey();
     rsa.readPrivateKeyFromPEMString(document.formulario.chavePrivada.value);
     var hashAlg = document.formulario.hash_algoritmo.value;
@@ -75,7 +75,7 @@ function doSign() {
 /*
  * Verifica a autenticidade da Assinatura Digital
  */
-function doVerify() {
+function verificarAssinatura() {
     var sMsg = document.formulario.campo_mensagem_verificada.value;
     var hSig = document.formulario.campo_verificacao_assinatura_digital.value;
 
@@ -94,7 +94,7 @@ function doVerify() {
  * Copia os campos da assinatura (string da mensagem, e assinatura digital) para
  * o campo da verificação da assinatura
  */
-function copyMsgAndSig() {
+function copiarCampos() {
     displayStatus("reset");
     document.formulario.campo_mensagem_verificada.value = document.formulario.campo_mensagem.value;
     document.formulario.campo_verificacao_assinatura_digital.value = document.formulario.campo_assinatura_digital.value;
