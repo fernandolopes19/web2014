@@ -37,9 +37,7 @@ function lerArquivoChave(filePath, idArea) {
             displayContents(txtChave, idArea);
         } catch (e) {
             if (e.number == -2146827859) {
-                alert('Unable to access local files due to browser security settings. ' +
-                        'To overcome this, go to Tools->Internet Options->Security->Custom Level. ' +
-                        'Find the setting for "Initialize and script ActiveX controls not marked as safe" and change it to "Enable" or "Prompt"');
+                alert('Erro');
             }
         }
     }
