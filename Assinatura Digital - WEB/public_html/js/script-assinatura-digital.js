@@ -1,4 +1,4 @@
-var g_READER; //GLOBAL File Reader object for demo purpose only
+var g_READER;
 
 /*
  * Verifica se suporta File API
@@ -19,22 +19,22 @@ function checkFileAPI() {
  * @param {type} filePath
  * @returns {Boolean}
  */
-function readText(filePath, id_area) {
-    var output = ""; //placeholder for text output
+function readText(filePath, idArea) {
+    var txtChave = "";
     if (filePath.files && filePath.files[0]) {
         g_READER.onload = function(e) {
-            output = e.target.result;
-            displayContents(output, id_area);
-        };//end onload()
+            txtChave = e.target.result;
+            displayContents(txtChave, idArea);
+        };
         g_READER.readAsText(filePath.files[0]);
-    }//end if html5 filelist support
-    else if (ActiveXObject && filePath) { //fallback to IE 6-8 support via ActiveX
+    }
+    else if (ActiveXObject && filePath) {
         try {
             g_READER = new ActiveXObject("Scripting.FileSystemObject");
             var file = g_READER.OpenTextFile(filePath, 1); //ActiveX File Object
-            output = file.ReadAll(); //text contents of file
+            txtChave = file.ReadAll(); //text contents of file
             file.Close(); //close file "input stream"
-            displayContents(output, id_area);
+            displayContents(txtChave, idArea);
         } catch (e) {
             if (e.number == -2146827859) {
                 alert('Unable to access local files due to browser security settings. ' +
@@ -43,7 +43,7 @@ function readText(filePath, id_area) {
             }
         }
     }
-    else { //this is where you could fallback to Java Applet, Flash or similar
+    else {
         return false;
     }
     return true;
@@ -55,9 +55,9 @@ function readText(filePath, id_area) {
  * @param {type} id_area
  * @returns {undefined}
  */
-function displayContents(txt, id_area) {
-    var el = document.getElementById(id_area);
-    el.innerHTML = txt; //display output in DOM
+function displayContents(txtChave, idArea) {
+    var elemento = document.getElementById(idArea);
+    elemento.innerHTML = txtChave;
 }
 
 /*
@@ -83,11 +83,10 @@ function doVerify() {
     x509.readCertPEM(document.formulario.cert.value);
     var isValid = x509.subjectPublicKeyRSA.verifyString(sMsg, hSig);
 
-    // display verification result
     if (isValid) {
-        _displayStatus("valido");
+        displayStatus("valido");
     } else {
-        _displayStatus("invalido");
+        displayStatus("invalido");
     }
 }
 
@@ -96,7 +95,7 @@ function doVerify() {
  * o campo da verificação da assinatura
  */
 function copyMsgAndSig() {
-    _displayStatus("reset");
+    displayStatus("reset");
     document.formulario.campo_mensagem_verificada.value = document.formulario.campo_mensagem.value;
     document.formulario.campo_verificacao_assinatura_digital.value = document.formulario.campo_assinatura_digital.value;
 }
@@ -104,12 +103,12 @@ function copyMsgAndSig() {
 /*
  * Mostra se a Assinatura é válida ou não
  */
-function _displayStatus(sStatus) {
+function displayStatus(status) {
     var div1 = document.getElementById("campo_resultado");
-    if (sStatus === "valido") {
+    if (status === "valido") {
         div1.style.backgroundColor = "skyblue";
         div1.innerHTML = "Esta Assinatura Digital é válida.";
-    } else if (sStatus === "invalido") {
+    } else if (status === "invalido") {
         div1.style.backgroundColor = "deeppink";
         div1.innerHTML = "Esta Assinatura Digital não é válida.";
     } else {

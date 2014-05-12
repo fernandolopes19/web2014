@@ -6,6 +6,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
 
+        <!-- Style utilizados -->
+        <link rel="stylesheet" href="css/style.css">
+
+        <!-- =============================================================== -->
+        <!-- Scripts necessários para execução -->
         <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/core.js"></script>
         <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/sha1.js"></script>
 
@@ -27,9 +32,9 @@
         <script type="text/javascript" src="js/libs/asn1hex-1.1.js"></script>
         <script type="text/javascript" src="js/libs/x509-1.1.js"></script>
         <script type="text/javascript" src="js/libs/crypto-1.1.js"></script>
-        
+
         <script type="text/javascript" src="js/script-assinatura-digital.js"></script>
-        
+
         <style type="text/css">
             TD  {vertical-align: top}
         </style>
@@ -44,7 +49,7 @@
                 <tr>
                     <td>
                         RSA Chava Privada.pem<br/>
-                        <input type="file" onchange='readText(this,"chavePrivada")' />
+                        <input type="file" onchange='readText(this, "chavePrivada")' />
                         <textarea id="chavePrivada" name="chavePrivada" rows="10" cols="65">
 =================================================================
 -----------&gt; Escolha o arquivo contendo a Chave Privada &lt;----------
@@ -55,8 +60,15 @@
                     </td>
                     <td></td>
                     <td>
-                        Resultado da verificação da Assinatura Digital
-                        <div id="campo_resultado" style="background: yellow">Preencha os campos para realizar a verificação da Assinatura Digital</div>
+                        Chave Pública do Assinante<br/>
+                        <input type="file" onchange='readText(this, "chavePublica")' />
+                        <textarea id="chavePublica" name="cert" rows="10" cols="65">
+=================================================================
+-----------&gt; Escolha o arquivo contendo a Chave Pública &lt;----------
+=================================================================
+                        </textarea><br/>
+                        Mensagem a ser verificada a Assinatura Digital<br/>
+                        <input type="text" name="campo_mensagem_verificada" size="100" value="aaa"/><br/>
                     </td>
                 </tr>
 
@@ -69,13 +81,10 @@
                             <option value="md5">MD5
                             <option value="ripemd160">RIPEMD-160
                         </select>
-                        <input type="button" value="Assinar essa mensagem &darr;" onClick="doSign();"/><br/>
+                        <input type="button" value="Assinar essa mensagem" onClick="doSign();"/><br/>
                     </td>
                     <td>
-                        <input type="button" value="Copy &rarr;" onClick="copyMsgAndSig();"/><br/>
-                    </td>
-                    <td>
-                        <input type="button" value="Verify this signature &uarr;" onClick="doVerify();"/><br/>
+                        <input type="button" value="Copiar campos" onClick="copyMsgAndSig();"/><br/>
                     </td>
                 </tr>
 
@@ -97,20 +106,17 @@
 --------------&gt; Coloque aqui a Assinatura Digital &lt;--------------
 =================================================================
                         </textarea><br/>
-                        Mensagem a ser verificada a Assinatura Digital<br/>
-                        <input type="text" name="campo_mensagem_verificada" size="100" value="aaa"/><br/>
-                        Chave Pública do Assinante<br/>
-                        <input type="file" onchange='readText(this,"chavePublica")' />
-                        <textarea id="chavePublica" name="cert" rows="10" cols="65">
-=================================================================
------------&gt; Escolha o arquivo contendo a Chave Pública &lt;----------
-=================================================================
-                        </textarea><br/>
+
+                        <input type="button" value="Verify this signature" onClick="doVerify();"/><br/>
+
+                        Resultado da verificação da Assinatura Digital
+                        <div id="campo_resultado" class="tarja_amarela">Preencha os campos para realizar a verificação da Assinatura Digital</div>
+
                     </td>
                 </tr>
 
             </table>
         </form>
 
-</body>
+    </body>
 </html>
