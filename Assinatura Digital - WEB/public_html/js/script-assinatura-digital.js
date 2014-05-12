@@ -31,9 +31,9 @@ function lerArquivoChave(filePath, idArea) {
     else if (ActiveXObject && filePath) {
         try {
             g_READER = new ActiveXObject("Scripting.FileSystemObject");
-            var file = g_READER.OpenTextFile(filePath, 1); //ActiveX File Object
-            txtChave = file.ReadAll(); //text contents of file
-            file.Close(); //close file "input stream"
+            var file = g_READER.OpenTextFile(filePath, 1);
+            txtChave = file.ReadAll();
+            file.Close();
             displayContents(txtChave, idArea);
         } catch (e) {
             if (e.number == -2146827859) {
