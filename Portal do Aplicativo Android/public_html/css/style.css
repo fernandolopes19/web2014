@@ -1,0 +1,25 @@
+/*
+    Fernando Souza Lopes
+    Desenvolvimento de Software para Web - 2014
+    Engenharia de Software
+    Instituto de Informática
+    Universidade Federal de Goiás
+*/
+
+.inicio {
+    background-image: url("img/logo_ufg.jpg");
+    background-repeat: no-repeat;
+    background-size: 1350px 200px;
+    height: 300px;
+    width: 1400px;
+}
+
+.logo_google-play{
+    background-image: url("img/logo_google-play.jpg");
+    background-repeat: no-repeat;
+    background-size: 150px 50px;
+    height: 50px;
+    width: 150px;
+    
+    
+}
