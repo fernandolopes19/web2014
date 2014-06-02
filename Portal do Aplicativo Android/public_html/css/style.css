@@ -5,11 +5,34 @@
     Instituto de Informática
     Universidade Federal de Goiás
 */
+.fundo {
+    background-image: url("img/ufg1.jpg");
+    background-repeat: no-repeat;
+    background-size: 1400px 200px;
+}
 
 .inicio {
-    background-image: url("img/logo_ufg.jpg");
-    background-repeat: no-repeat;
-    background-size: 1350px 200px;
+    margin: 0 auto;
     height: 300px;
-    width: 1400px;
+    width: auto;
+}
+
+.inicio h1{
+    font-family: helvetica;
+    font-size: 60px;
+    margin: 10px 0px 0px 40px;
+}
+
+.inicio h2{
+    font-family: helvetica;
+    color: white;
+    margin: 40px 0px 0px 40px;
+}
+
+.download_logo{
+    margin: 0px 10px 0px 0px;
+}
+
+.download_div{
+    margin: 0px 10px 0px 40px;
 }
