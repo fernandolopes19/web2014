@@ -5,34 +5,260 @@
     Instituto de Informática
     Universidade Federal de Goiás
 */
-.fundo {
-    background-image: url("img/ufg1.jpg");
+.banner {
+    background-image: url("../img/ufg1.jpg");
     background-repeat: no-repeat;
-    background-size: 1400px 200px;
 }
 
 .inicio {
+    font-family: helvetica;
     margin: 0 auto;
     height: 300px;
     width: auto;
 }
 
 .inicio h1{
-    font-family: helvetica;
-    font-size: 60px;
-    margin: 10px 0px 0px 40px;
+    font-size: 90px;
+    margin: 60px 0px 0px 40px;
 }
 
 .inicio h2{
-    font-family: helvetica;
     color: white;
     margin: 40px 0px 0px 40px;
 }
 
 .download_logo{
-    margin: 0px 10px 0px 0px;
+    margin: 0px 10px 0px 40px;
 }
 
-.download_div{
-    margin: 0px 10px 0px 40px;
+.tabel{
+    display: table;
+}
+
+.tabel-row{
+    display: table-row;
+}
+
+.table-cell-1{
+    width: 50%;
+    display: table-cell;
+}
+
+.table-cell-2{
+    width: 5%;
+    display: table-cell;
+}
+
+.app-exemplo{
+    height: 1000px;
+    width: 770px;
+    margin-left: 370px;
+}
+
+.app-exemplo .float-left{
+    float: left;
+}
+
+.app-exemplo .right{
+    text-align: justify;
+}
+
+
+/*
+    Adaptar o código com o tamanho da tela
+*/
+
+@media screen and (max-width:1170px){
+    .app-exemplo{
+        margin-left: 200px;
+    }
+
+}
+
+@media screen and (max-width: 1024px){
+    .banner{
+        background-size: 1024px 250px;
+    }
+
+    .inicio {
+        font-family: helvetica;
+        margin: 0 auto;
+        height: 250px;
+        width: auto;
+    }
+
+    .inicio h1{
+        font-size: 65px;
+        margin: 60px 0px 0px 30px;
+
+    }
+
+    .inicio h2{
+        color: white;
+        font-size: 18px;
+        margin: 30px 0px 0px 30px;
+    }
+
+    .download_logo{
+        margin: 0px 10px 0px 30px;
+    }
+
+    .table-cell-1{
+        width: 50%;
+        display: table-cell;
+    }
+
+    .table-cell-2{
+        width: 5%;
+        display: table-cell;
+    }
+
+    .app-exemplo{
+        margin-left: 40px;
+    }
+
+}
+
+@media screen and (max-width:840px){
+    .app-exemplo{
+        margin-left: 20px;
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 640px){
+    .banner{
+        background-size: 640px 200px;
+    }
+
+    .inicio {
+        font-family: helvetica;
+        margin: 0 auto;
+        height: 200px;
+        width: auto;
+    }
+
+    .inicio h1{
+        font-size: 40px;
+        margin: 60px 0px 0px 20px;
+    }
+
+    .inicio h2{
+        color: white;
+        font-size: 18px;
+        margin: 20px 0px 0px 20px;
+    }
+
+    .download_logo{
+        margin: 0px 0px 0px 20px;
+    }
+
+    .table-cell-1{
+        width: 40%;
+        display: table-cell;
+    }
+
+    .table-cell-2{
+        width: 5%;
+        display: table-cell;
+    }
+
+    .app-exemplo{
+        margin-left: 0px;
+        width: 600px;
+    }
+
+    .right{
+        width: 300px;
+    }
+}
+
+@media screen and (max-width:440px){
+    .banner{
+        background-size: 640px 300px;
+        background-position: top center;
+    }
+
+    .inicio {
+        font-family: helvetica;
+        margin: 0 auto;
+        height: 200px;
+        width: auto;
+    }
+
+    .inicio h1{
+        font-size: 45px;
+        margin: 90px 0px 0px 0px;
+    }
+
+    .inicio h2{
+        color: white;
+        font-size: 18px;
+        margin: 60px 0px 0px 0px;
+    }
+
+    .download_logo{
+        margin: 0px 0px 0px 0px;
+    }
+
+    .table-cell-1{
+        width: 35%;
+        display: table-cell;
+    }
+
+    .table-cell-2{
+        width: 5%;
+        display: table-cell;
+    }
+}
+
+@media screen and (max-width:350px){
+    .app-exemplo{
+        margin-left: 0px;
+        width: 600px;
+    }
+    
+    .right{
+        width: 100px;
+    }
+}
+
+@media screen and (max-width:235px){
+    .banner{
+        background-size: 640px 300px;
+        background-position: top center;
+    }
+
+    .inicio {
+        font-family: helvetica;
+        margin: 0 auto;
+        height: 200px;
+        width: auto;
+    }
+
+    .inicio h1{
+        color: black;
+        font-size: 30px;
+        margin: 90px 0px 0px 0px;
+    }
+
+    .inicio h2{
+        color: white;
+        font-size: 18px;
+        margin: 60px 0px 0px 0px;
+    }
+
+    .download_logo{
+        margin: 0px 0px 0px 0px;
+    }
+
+    .table-cell-1{
+        width: 5%;
+        display: table-cell;
+    }
+
+    .table-cell-2{
+        width: 30%;
+        display: table-cell;
+    }
 }
