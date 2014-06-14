@@ -8,6 +8,7 @@
 .banner {
     background-image: url("../img/ufg1.jpg");
     background-repeat: no-repeat;
+    background-color: lightgrey;
 }
 
 .inicio {
@@ -50,7 +51,7 @@
 }
 
 .app-exemplo{
-    height: 1000px;
+    height: 500px;
     width: 770px;
     margin-left: 370px;
 }
@@ -61,6 +62,11 @@
 
 .app-exemplo .right{
     text-align: justify;
+}
+
+.rodape{
+    padding-top: 150px;
+    text-align: center;
 }
 
 
